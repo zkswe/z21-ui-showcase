@@ -60,8 +60,8 @@
 
 ![实时波形](showcase/waveform.gif)
 
-### 黑胶唱片旋转 + 频谱（真实音频播放）
-音乐页在**真机上真播音频**：唱片随播放匀速旋转、暂停即停；**频谱曲线由真实音频分析得到**（与播放位置严格同步）；进度条与歌词也全部跟着真实播放位置走：
+### 黑胶唱片旋转 + 实时频谱（真实音频播放）
+音乐页在**真机上真播音频**：唱片随播放匀速旋转、暂停即停；**频谱是设备端对真实 PCM 做实时 FFT 算出来的**（跟真实音频与播放位置严格同步）；进度条与歌词也全部跟着真实播放位置走：
 
 ![音乐播放器](showcase/music.gif)
 
@@ -100,19 +100,24 @@
 
 ## 用到的组件能力
 
-本示例跑在一条完整的组件链上（`Manifest.xml` 声明，`fsc install` 自动拉取）：
+本示例跑在一条完整的组件链上 —— **全部只需在 `Manifest.xml` 里声明依赖**，`fsc install` 自动解析依赖树并拉取（含跨包传递依赖），不需要手工移植/编译任何第三方库：
 
-| 组件 | 提供的能力 | 对本项目意味着什么 |
+| 组件包 | 提供的能力 | 本示例的用法 |
 |---|---|---|
-| `easyui` | **FlyThings UI 控件库**（按钮/开关/滑块/列表/图表/画板/滚轮…） | 8 页控件全部来自它；不需要自己画控件 |
+| `easyui` | **FlyThings UI 控件库**（按钮/开关/滑块/列表/图表/画板/pointer/seekbar/painter…） | 8 个页面的全部控件与交互 |
+| `audio-utility` | 音频解码播放 + **播放 PCM 回调** + 音量/静音（MI_AO 后端） | 音乐页真播、**设备端实时频谱**、音量/静音 |
 | `zknet` | 网络能力（WiFi/连接状态） | 设置页的「无线网络」与系统设置页跳转 |
 | `zkhardware` | 硬件 API（GPIO/背光/ADC/PWM/蜂鸣器） | 背光、按键/指示灯这类硬件交互的落点 |
 | `base-utility` | 基础库（文件/功能/日志等） | 生成代码与业务代码的公共底座 |
 | `png` / `jpeg` | PNG / JPEG 解码 | 切图资源与照片类素材的加载 |
 | `z` | 压缩库 | 网络/升级链路依赖 |
-| `curl` + `openssl` + `cares` | HTTP(S) 客户端 / TLS / 异步 DNS | 需要联网拉数据（列表/封面/接口）时的现成通道 |
+| `curl` + `openssl` + `cares` | HTTP(S) 客户端 / TLS / 异步 DNS | 需要联网拉数据时的现成通道 |
+| `ffmpeg` | 解码链（音频/视频软解） | `audio-utility` 的解码后端；**这个依赖需按需显式声明** |
 
-> 复用组件（`components/`：BLE 门面、字库、图标库、自定义控件包等）见 MCP 仓库的 `components/` 目录。
+> **开发便捷性就体现在这里**：上面这些包（包括 `audio-utility` 自动带出的 `mi_ao` / `mi_aio` / `mi_sys` / `mi_common` / `apc` / `aec` / `base-json` / `rapidjson` 等）**都不是手工移植的** —— 声明依赖 → 自动拉取 → 直接 `#include` 用。
+> 拿音乐页的「**设备端实时频谱**」为例：只加一行 `<package id="audio-utility" .../>`，就拿到了「解码播放 + 播放 PCM 回调 + 音量/静音」整套能力，频谱只需自己补一个 1024 点 FFT（`src/zk/zk_fft.h`）。
+
+> 可复用组件（`components/`：BLE 门面、字库、图标库、自定义控件包等）见 MCP 仓库的 `components/` 目录。
 
 ---
 
@@ -197,8 +202,9 @@
 - **动态列表**：`listview` + 适配器三回调（计数 / 填充 / 点击），数据运行时构建；封面墙用 **2 列网格** + **ImageCache**（按路径缓存已解码位图，回页不重复解码），取图尺寸严格等于显示盒。
 - **动画**：页面进入用统一的滑入编排（错峰 duration/delay）。
 - **自绘**：图表/波形按帧重绘；画板用 painter 记录笔画。
-- **音乐播放**：`ZKMediaPlayer` 真播。Z21 是 SigmaStar 平台，音频输出走 **MI_AO** 通道（不是 ALSA）；唱片用 `pointer` 控件逐帧累加角度实现匀速旋转，暂停即停；进度与歌词取自播放器的真实位置；三首素材为仓库内程序化合成的 demo 曲（`resources/music/`），随资源一起部署到设备。
-- **频谱**：`painter` 自绘（频带竖线 + 光晕 + 曲线）。设备端播放器不暴露 PCM，所以频谱是**在 PC 侧对同一份音频离线分析**（`tools/gen_assets_spectrum.py`：28 对数频带 / 40fps / 按频带自身高分位归一）得到的紧凑数据（`resources/spectrum/*.bin`），运行时按播放位置索引帧回放 —— 与真实音频严格同步，设备端零 FFT 开销。
+- **音乐播放**：`audio-utility` 的 `MediaPlayer` 真播（`play/pause/resume/stop/seekTo`、`currentPositon()/duration()`、`getAudioInfo()` 取 ID3、`onCompletion/onError`）。Z21 是 SigmaStar 平台，音频输出走 **MI_AO** 通道（不是 ALSA）；音量/静音用 `AudioManager`（Z21 取值 0~50 → AO 硬件 dB）。唱片用 `pointer` 控件逐帧累加角度实现匀速旋转，暂停即停；三首素材为仓库内程序化合成的 demo 曲（`resources/music/`），随资源一起部署到设备。
+- **实时频谱**：`MediaPlayer::onAudio` 回调**直接给解码后的 PCM**（实测：单声道 s16 @ 44.1kHz，每帧 1152 采样）→ 回调线程只做下混与环形缓冲拷贝 → 40ms 定时器里做 **1024 点 radix-2 FFT**（`src/zk/zk_fft.h`）→ 分 28 个对数频带（峰值为主 + 每带自适应归一化）→ `painter` 自绘「频带竖线 + 光晕 + 曲线」。暂停即冻结、拖动进度谱形跟着跳。
+  > 注：`audio-utility` 的解码后端是 ffmpeg，所以工程 Manifest 需**显式**声明 `ffmpeg`（包自身没写这条依赖）；不加会报 `av_*` / `swr_*` 系列未定义。
 - **资源出图**：图标与封面按控件盒尺寸程序化生成（圆角走覆盖率 α，缩放用面积平均，避免边缘振铃）。
 
 ### 已知限制

@@ -60,8 +60,8 @@ Dynamic data + image cache, with smooth scrolling and rebound:
 
 ![live waveform](showcase/waveform.gif)
 
-### Spinning vinyl + spectrum (real audio playback)
-On the real device the music page **actually plays audio**: the record spins while playing and stops the moment you pause, the **spectrum curve is derived from the real audio** (tightly synced to the playback position), and both the progress bar and the lyrics follow the **real playback position**:
+### Spinning vinyl + live spectrum (real audio playback)
+On the real device the music page **actually plays audio**: the record spins while playing and stops the moment you pause, the **spectrum is computed on-device with a real FFT over the decoded PCM** (tightly synced to the audio and the playback position), and both the progress bar and the lyrics follow the **real playback position**:
 
 ![music player](showcase/music.gif)
 
@@ -100,17 +100,22 @@ On the real device the music page **actually plays audio**: the record spins whi
 
 ## Components used
 
-The demo runs on a complete component chain (declared in `Manifest.xml`, fetched by `fsc install`):
+This demo runs on a complete component chain — **everything is declared in `Manifest.xml`** and resolved by `fsc install` (transitive dependencies included), with no third-party library ported or compiled by hand:
 
-| Component | Provides | Why it matters here |
+| Package | Provides | Used here for |
 |---|---|---|
-| `easyui` | **The FlyThings UI widget library** (buttons, switches, sliders, lists, charts, canvas, pickers…) | Every widget on the 8 screens comes from here |
-| `zknet` | Networking (WiFi / connection state) | The "Wireless" switch and system settings jump |
+| `easyui` | **The FlyThings UI widget library** (buttons, switches, sliders, lists, charts, canvas, pointer, seekbar, painter…) | Every widget and interaction on the 8 screens |
+| `audio-utility` | Audio decode + playback, **playback PCM callback**, volume/mute (MI_AO backend) | Real playback, the **on-device live spectrum**, volume/mute |
+| `zknet` | Networking (WiFi / connection state) | The "Wireless" switch and the system settings jump |
 | `zkhardware` | Hardware APIs (GPIO / backlight / ADC / PWM / beeper) | Backlight and indicator-style hardware interaction |
 | `base-utility` | Base utilities (files / functional / logging) | Shared foundation for generated and business code |
 | `png` / `jpeg` | PNG / JPEG decoding | Image assets and photo-style content |
 | `z` | Compression | Used by networking / upgrade paths |
-| `curl` + `openssl` + `cares` | HTTPS client / TLS / async DNS | Ready-made path for online data (lists, covers, APIs) |
+| `curl` + `openssl` + `cares` | HTTPS client / TLS / async DNS | Ready-made path for online data |
+| `ffmpeg` | Decode chain (audio/video software decoding) | The decode backend of `audio-utility`; **declare this one explicitly** |
+
+> **This is where the development convenience shows**: none of the above (including what `audio-utility` pulls in automatically — `mi_ao` / `mi_aio` / `mi_sys` / `mi_common` / `apc` / `aec` / `base-json` / `rapidjson`) is ported by hand — declare a dependency, it is fetched, then just `#include` it.
+> Take the music page's **on-device live spectrum**: a single line (`<package id="audio-utility" .../>`) buys the whole decode-play + playback-PCM-callback + volume/mute stack; all that was left was a 1024-point FFT (`src/zk/zk_fft.h`).
 
 > Reusable components (BLE facade, fonts, icon library, custom widget packs) live in the MCP repo's `components/`.
 
@@ -197,8 +202,9 @@ Install in one line: `git clone` the repo above and run `mcp_server.py` **from t
 - **Dynamic lists**: `listview` + the three adapter callbacks (count / fill / click), data built at runtime; the cover wall uses a **2-column grid** + **ImageCache** (caches decoded bitmaps by path; no re-decode on re-entry), with image size exactly matching the display box.
 - **Animation**: staggered slide-in choreography on page entry.
 - **Self-drawn**: charts and waveform redraw per frame; the canvas records strokes.
-- **Music playback**: real playback through `ZKMediaPlayer`. Z21 is a SigmaStar platform, so the audio path is the **MI_AO** channel (not ALSA). The vinyl is a `pointer` widget whose angle is advanced every frame while playing and stops on pause; progress and lyrics come from the player's real position. The three tracks are procedurally synthesised demos shipped in `resources/music/` and deployed with the app resources.
-- **Spectrum**: drawn with a `painter` (band lines + glow + curve). The device player does not expose PCM, so the spectrum is **analysed offline on the PC from the very same audio** (`tools/gen_assets_spectrum.py`: 28 log-spaced bands, 40 fps, per-band high-percentile normalisation) and shipped as compact data (`resources/spectrum/*.bin`) which the app replays by indexing frames at the real playback position — tightly synced to the audio, at zero on-device FFT cost.
+- **Music playback**: real playback via `audio-utility`'s `MediaPlayer` (`play/pause/resume/stop/seekTo`, `currentPositon()/duration()`, `getAudioInfo()` for ID3, `onCompletion/onError`). Z21 is a SigmaStar platform, so the audio path is the **MI_AO** channel (not ALSA); volume/mute go through `AudioManager` (0~50 on Z21 → AO hardware dB). The vinyl is a `pointer` widget whose angle is advanced every frame while playing and stops on pause. The three tracks are procedurally synthesised demos shipped in `resources/music/` and deployed with the app resources.
+- **Live spectrum**: `MediaPlayer::onAudio` hands you the **decoded PCM** (measured: mono s16 @ 44.1 kHz, 1152 samples per frame) → the callback thread only downmixes into a ring buffer → a 40 ms timer runs a **1024-point radix-2 FFT** (`src/zk/zk_fft.h`) → 28 log-spaced bands (peak-based, per-band adaptive normalisation) → a `painter` draws band lines + glow + curve. Pausing freezes it; scrubbing jumps it.
+  > Note: `audio-utility` decodes through ffmpeg, so the project manifest must **explicitly** declare `ffmpeg` (the package does not) — otherwise the link fails on `av_*` / `swr_*`.
 - **Asset generation**: icons and covers are generated to the exact widget box (rounded corners via coverage alpha, scaling via area averaging — no edge ringing).
 
 ### Known limitations

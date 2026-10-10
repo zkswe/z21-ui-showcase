@@ -7,64 +7,55 @@ INIT_UI_EVENT_BINDINGS
 #include "uart/ProtocolSender.h"
 #include "ui/zk_ui_nav.h"
 #include "zk/zk_page_anim.h"
-#include "media/ZKMediaPlayer.h"
+#include "zk/zk_fft.h"
+#include <media_player.h>
+#include <audio_manager.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
 
 /* ============================================================================
- * music 页：真实音频播放 + 黑胶唱片旋转
+ * music 页：真实音频播放 + 黑胶唱片旋转 + 实时频谱
  *
- * 播放：ZKMediaPlayer(E_MEDIA_TYPE_AUDIO)。Z21 是 SigmaStar 平台，音频输出走
- *       MI_AO 通道（设备 /dev/mi_ao，由 /lib/libzkmedia.so 驱动 libmad 软解 MP3），
- *       **不是** ALSA —— 所以不要按"ALSA 声卡"的思路排查。
+ * 播放：base::MediaPlayer（audio-utility 包）。Z21 是 SigmaStar 平台，输出走
+ *       MI_AO 通道（不是 ALSA）；音量/静音走 base::AudioManager（Z21 取值 0~50）。
+ *       ⚠️ audio-utility 内部解码用 ffmpeg：工程 Manifest 除了 audio-utility
+ *          还必须显式加 ffmpeg（包自身没声明这个依赖），否则链接报 av_ 与 swr_ 系列未定义。
  *
- * 音频素材：resources/music/*.mp3 随工程资源一起部署到设备
- *          （资源目录 → /mnt/extsd/ui/，故实际路径 /mnt/extsd/ui/music/*.mp3）。
- *          也会依次回退到 /mnt/extsd/music/、/mnt/usb1/ 找同名文件。
- *          一个都找不到时退化为"演示进度"（界面照常可用），并在日志里提示。
+ * 频谱：MediaPlayer 的 onAudio 回调**直接给解码后的 PCM** → 写环形缓冲 →
+ *       定时器里做 1024 点 radix-2 FFT → 分 28 个对数频带 → 每带自适应归一化
+ *       → painter 画「频带竖线 + 光晕 + 曲线」。**真·实时**，任意音乐都能出谱。
+ *       （回调在库线程：只做拷贝，绝不做 FFT/绘制。）
  *
- * 唱片：pointer 控件（pointerPic = 黑胶图），调用方定时器驱动 setTargetAngle
- *      持续累加角度 → 匀速旋转；暂停即停转。三首歌各一张唱片，按可见性切换。
+ * 音频素材：resources/music/*.mp3 随工程资源部署到 /mnt/extsd/ui/，
+ *          即实际路径 /mnt/extsd/ui/music/*.mp3；另依次回退 /mnt/extsd/music/、/mnt/usb1/。
  *
- * 频谱：painter 自绘曲线。设备端 ZKMediaPlayer 不暴露 PCM（没法在 App 里做 FFT），
- *      所以频谱是**在 PC 侧对同一份音频离线分析**（tools/gen_assets_spectrum.py）
- *      出来的 28 频带 × 40fps 数据，运行时按 `getCurrentPosition()` 索引帧回放 ——
- *      与真实音频严格同步（拖动进度也会跟着跳），设备端零 FFT 开销。
+ * 唱片：pointer 控件（pointerPic = 黑胶图），定时器驱动 setTargetAngle 匀速旋转，
+ *       暂停即停；三首歌各一张唱片，按可见性切换。
  * ========================================================================== */
 
-static ZKMediaPlayer *sPlayer = nullptr;
-static int   sIdx = 0;            /* 当前曲目 */
-static bool  sPlaying = false;    /* UI 层"正在播放" */
-static bool  sUserPaused = false; /* 用户主动暂停（离开页面回来不自动续播） */
-static bool  sRealAudio = false;  /* 当前是否真在播放器上播（否则为演示进度） */
-static int   sPosMs = 0;          /* 当前进度（真播取播放器位置） */
-static int   sSimMs = 0;          /* 演示进度 */
-static float sAngle = 0.0f;       /* 唱片角度 */
-static float sVolume = 0.7f;
-static bool  sMuted = false;
+/* ------------------------------ 曲目表 ------------------------------ */
 
-/* ---- 曲目表（素材为本仓库程序化合成的 demo 曲，无版权问题） ---- */
 struct MuTrack {
-    const char *title;
+    const char *title;     /* 兜底显示名（文件带 ID3 时用 ID3） */
     const char *artist;
     const char *file;      /* 文件名，配合下面的目录候选解析 */
-    const char *spec;      /* 频谱数据（离线分析同一份音频） */
-    int         lyrAt[4];  /* 每句歌词起始时间 ms（与素材时长对齐） */
+    int         lyrAt[4];  /* 每句歌词起始时间 ms */
     const char *lyr[4];
 };
 
 static const MuTrack kTracks[3] = {
-    {"Morning Walk", "FlyThings UI Demo", "demo_01.mp3", "spectrum/spec_1.bin", {0, 12000, 26000, 38000},
+    {"Morning Walk", "FlyThings UI Demo", "demo_01.mp3", {0, 12000, 26000, 38000},
      {"A quiet street wakes in the light", "Coffee steam and slow footsteps", "Every window starts to glow", "Walk with me, we are in no hurry"}},
-    {"Pixel Run", "FlyThings UI Demo", "demo_02.mp3", "spectrum/spec_2.bin", {0, 10000, 22000, 33000},
+    {"Pixel Run", "FlyThings UI Demo", "demo_02.mp3", {0, 10000, 22000, 33000},
      {"Press start, the screen comes alive", "Eight bit colors on the run", "Jump the gaps and keep the beat", "One more round before the sun"}},
-    {"Night Drive", "FlyThings UI Demo", "demo_03.mp3", "spectrum/spec_3.bin", {0, 14000, 30000, 44000},
+    {"Night Drive", "FlyThings UI Demo", "demo_03.mp3", {0, 14000, 30000, 44000},
      {"City lights behind the glass", "Radio low, the road is long", "Neon rivers passing by", "Drive until the night runs out"}},
 };
 
-static const int kSimDurMs = 60000;   /* 找不到音频文件时的演示时长 */
+static const int kSimDurMs = 60000;   /* 无法播放时的演示时长 */
 
 static const char *kDirs[] = {
     "/mnt/extsd/ui/music/",   /* 随工程资源部署（resources/music/） */
@@ -73,22 +64,52 @@ static const char *kDirs[] = {
     "/mnt/usb1/",
 };
 
-/* 频谱数据的根目录候选（路径形如 <root>spectrum/spec_N.bin） */
-static const char *kSpecDirs[] = {
-    "/mnt/extsd/ui/",         /* 随工程资源部署（resources/spectrum/） */
-    "/mnt/extsd/",
-    "/mnt/usb1/",
-};
-
 static char sPath[3][128];
 static bool sHaveFile[3];
-static int  sDurMs[3];
+
+/* ------------------------------ 播放状态 ------------------------------ */
+
+static base::MediaPlayer *sPlayer = nullptr;
+static int   sIdx = 0;            /* 当前曲目 */
+static bool  sPlaying = false;    /* UI 层“正在播放” */
+static bool  sUserPaused = false; /* 用户主动暂停（离开页面回来不自动续播） */
+static int   sPosMs = 0;
+static int   sSimMs = 0;
+static int   sDurMs[3];
+static float sAngle = 0.0f;       /* 唱片角度 */
+static bool  sMuted = false;
+static int   sVolume = 38;        /* Z21: 0~50 */
+static bool  sId3Done = false;    /* 本曲是否已取过 ID3 */
 
 static S_ACTIVITY_TIMEER REGISTER_ACTIVITY_TIMER_TAB[] = {
     {9, 16},   /* page anim */
-    {1, 40},   /* 唱片旋转 */
+    {1, 40},   /* 唱片旋转 + 频谱 */
     {0, 200},  /* 进度 / 歌词 */
 };
+
+/* ------------------------------ PCM 环形缓冲 ------------------------------ */
+
+#define kPcmRingBits 15
+#define kPcmRing     (1 << kPcmRingBits)     /* 32768 个单声道样本 */
+#define kFftN        1024
+
+static float sPcmRing[kPcmRing];
+static volatile int sPcmW = 0;            /* 写指针（样本数） */
+static volatile long sPcmBytes = 0;       /* 累计收到字节（探测格式用） */
+static volatile long sPcmCalls = 0;
+static int   sPcmCh = 1;                  /* PCM 声道数：实测回调 2304B/帧 = 1152 采样 = 单声道 */
+static int   sPcmRate = 44100;            /* PCM 采样率：实测约 87.5 KB/s = mono s16 @ 44.1k */
+
+static ZkFft  sFft(kFftN);
+static float  sHann[kFftN];
+static float  sFftIn[kFftN];
+static float  sMag[kFftN / 2 + 1];
+
+static const int kSpecBands = 28;
+static float sBandRef[32];                /* 每带自适应参考（dB，慢衰减） */
+static float sSpecDisp[32];               /* 显示值（0~1，平滑） */
+static const int kSpecW = 520;            /* 与 ui 里 painter__1 尺寸一致 */
+static const int kSpecH = 44;
 
 /* ------------------------------ 界面刷新 ------------------------------ */
 
@@ -132,85 +153,45 @@ static void muApplyProgress() {
     if (mMuTimeAllPtr) mMuTimeAllPtr->setText(buf);
 }
 
-/* ------------------------------ 频谱（离线分析的真实频谱，按播放位置回放） ------------------------------ */
-
-static unsigned char *sSpec = nullptr;   /* 文件头 12B + frames*bands 数据 */
-static int   sSpecBands = 0;
-static int   sSpecFps100 = 0;
-static int   sSpecFrames = 0;
-static float sSpecDisp[32];              /* 显示用平滑值 */
-static const int kSpecW = 520;           /* 与 ui 里 painter__1 尺寸一致 */
-static const int kSpecH = 44;
+/* ------------------------------ 频谱 ------------------------------ */
 
 static void muSpecReset() {
-    for (int i = 0; i < 32; ++i) sSpecDisp[i] = 0.0f;
+    for (int i = 0; i < 32; ++i) {
+        sBandRef[i] = -100.0f;
+        sSpecDisp[i] = 0.0f;
+    }
+    sPcmW = 0;
+    sPcmBytes = 0;
+    sPcmCalls = 0;
 }
 
-static void muLoadSpec() {
-    if (sSpec) { free(sSpec); sSpec = nullptr; }
-    sSpecBands = sSpecFps100 = sSpecFrames = 0;
-    muSpecReset();
-
-    char path[160];
-    for (unsigned d = 0; d < sizeof(kSpecDirs) / sizeof(kSpecDirs[0]); ++d) {
-        snprintf(path, sizeof(path), "%s%s", kSpecDirs[d], kTracks[sIdx].spec);
-        FILE *fp = fopen(path, "rb");
-        if (!fp) continue;
-        unsigned char hdr[12];
-        if (fread(hdr, 1, 12, fp) != 12 || memcmp(hdr, "ZKS1", 4) != 0) { fclose(fp); continue; }
-        int bands  = hdr[4] | (hdr[5] << 8);
-        int fps100 = hdr[6] | (hdr[7] << 8);
-        int frames = hdr[8] | (hdr[9] << 8) | (hdr[10] << 16) | (hdr[11] << 24);
-        if (bands < 2 || bands > 32 || frames < 1) { fclose(fp); continue; }
-        size_t n = (size_t) bands * frames;
-        unsigned char *buf = (unsigned char *) malloc(n + 12);
-        if (!buf) { fclose(fp); continue; }
-        memcpy(buf, hdr, 12);
-        size_t got = fread(buf + 12, 1, n, fp);
-        fclose(fp);
-        if (got != n) { free(buf); continue; }
-        sSpec = buf; sSpecBands = bands; sSpecFps100 = fps100; sSpecFrames = frames;
-        LOGD("music: spectrum %s (%d bands x %d frames)", path, bands, frames);
-        return;
-    }
-    LOGD("music: spectrum not found for #%d (flat line)", sIdx + 1);
+static void muDrawSpecIdle() {
+    if (!mSpecPtr) return;
+    SZKPoint base[2];
+    base[0].x = 0.0f;                base[0].y = (float)(kSpecH - 1);
+    base[1].x = (float)(kSpecW - 1); base[1].y = (float)(kSpecH - 1);
+    mSpecPtr->erase(0, 0, kSpecW, kSpecH);
+    mSpecPtr->setLineWidth(1);
+    mSpecPtr->setSourceColor(0x5E2730);
+    mSpecPtr->drawLines(base, 2);
 }
 
 static void muDrawSpec() {
     if (!mSpecPtr) return;
-    const unsigned int kColBody   = 0xEC4141;   /* 主色（同页面强调色） */
-    const unsigned int kColBar    = 0x5E2730;   /* 频带竖线（暗） */
-    const unsigned int kColGlow   = 0x3A1519;   /* 曲线光晕（更粗、更暗） */
-
-    mSpecPtr->erase(0, 0, kSpecW, kSpecH);
-
-    if (!sSpec || sSpecBands < 2) {             /* 无频谱数据：只画基线 */
-        SZKPoint base[2];
-        base[0].x = 0.0f;              base[0].y = (float)(kSpecH - 1);
-        base[1].x = (float)(kSpecW - 1); base[1].y = (float)(kSpecH - 1);
-        mSpecPtr->setLineWidth(1);
-        mSpecPtr->setSourceColor(kColBar);
-        mSpecPtr->drawLines(base, 2);
-        return;
-    }
-
-    int frame = (int)((long long) sPosMs * sSpecFps100 / 100000);
-    if (frame < 0) frame = 0;
-    if (frame >= sSpecFrames) frame = sSpecFrames - 1;
-    const unsigned char *row = sSpec + 12 + (size_t) frame * sSpecBands;
+    const unsigned int kColBody = 0xEC4141;   /* 主色（同页面强调色） */
+    const unsigned int kColBar  = 0x5E2730;   /* 频带竖线（暗） */
+    const unsigned int kColGlow = 0x3A1519;   /* 曲线光晕 */
 
     SZKPoint pts[32];
-    for (int i = 0; i < sSpecBands; ++i) {
-        float t = row[i] / 255.0f;
-        sSpecDisp[i] += (t - sSpecDisp[i]) * 0.55f;   /* 轻平滑：不跟每帧跳 */
-        if (sSpecDisp[i] < 0.0f) sSpecDisp[i] = 0.0f;
-        pts[i].x = (float)(i * (kSpecW - 1)) / (float)(sSpecBands - 1);
+    for (int i = 0; i < kSpecBands; ++i) {
+        pts[i].x = (float)(i * (kSpecW - 1)) / (float)(kSpecBands - 1);
         pts[i].y = (float)(kSpecH - 2) - sSpecDisp[i] * (float)(kSpecH - 6);
     }
 
+    mSpecPtr->erase(0, 0, kSpecW, kSpecH);
     mSpecPtr->setLineWidth(1);                    /* 1) 频带竖线 */
     mSpecPtr->setSourceColor(kColBar);
-    for (int i = 0; i < sSpecBands; ++i) {
+    for (int i = 0; i < kSpecBands; ++i) {
         SZKPoint v[2];
         v[0] = pts[i]; v[0].y = (float)(kSpecH - 1);
         v[1] = pts[i];
@@ -218,13 +199,83 @@ static void muDrawSpec() {
     }
     mSpecPtr->setSourceColor(kColGlow);           /* 2) 光晕 */
     mSpecPtr->setLineWidth(6);
-    mSpecPtr->drawCurve(pts, sSpecBands);
+    mSpecPtr->drawCurve(pts, kSpecBands);
     mSpecPtr->setSourceColor(kColBody);           /* 3) 曲线本体 */
     mSpecPtr->setLineWidth(2);
-    mSpecPtr->drawCurve(pts, sSpecBands);
+    mSpecPtr->drawCurve(pts, kSpecBands);
+}
+
+/* PCM 回调（库线程）：只做下混 + 入环形缓冲 */
+static void muPushPcm(const uint8_t *data, int length) {
+    sPcmBytes += length;
+    sPcmCalls++;
+    if (!data || length < 2) return;
+    const short *s = (const short *) data;
+    int n = length / 2;
+    int w = sPcmW;
+    if (sPcmCh >= 2) {
+        for (int i = 0; i + 1 < n; i += 2) {
+            float v = (float)(s[i] + s[i + 1]) * 0.5f;
+            sPcmRing[(w++) & (kPcmRing - 1)] = v;
+        }
+    } else {
+        for (int i = 0; i < n; ++i) {
+            sPcmRing[(w++) & (kPcmRing - 1)] = (float) s[i];
+        }
+    }
+    sPcmW = w;
+}
+
+/* 定时器里跑：取最近 kFftN 个样本 → FFT → 28 频带 → 自适应归一 */
+static void muAnalyzeSpec() {
+    if (sPcmW < kFftN) { muDrawSpecIdle(); return; }
+
+    for (int i = 0; i < kFftN; ++i) {
+        int idx = (sPcmW - kFftN + i) & (kPcmRing - 1);
+        sFftIn[i] = sPcmRing[idx];
+    }
+    sFft.magnitude(sFftIn, sHann, sMag);
+
+    const float rate = (float) sPcmRate;
+    float fLo = 60.0f;
+    float fHi = rate * 0.45f;
+    if (fHi > 7000.0f) fHi = 7000.0f;
+    const float ratio = fHi / fLo;
+
+    for (int b = 0; b < kSpecBands; ++b) {
+        float f0 = fLo * powf(ratio, (float) b / kSpecBands);
+        float f1 = fLo * powf(ratio, (float)(b + 1) / kSpecBands);
+        int i0 = (int)(f0 * kFftN / rate);
+        int i1 = (int)(f1 * kFftN / rate);
+        if (i0 < 1) i0 = 1;
+        if (i1 <= i0) i1 = i0 + 1;
+        if (i1 > kFftN / 2) i1 = kFftN / 2;
+
+        float sum = 0.0f;
+        float peak = 0.0f;
+        for (int i = i0; i < i1; ++i) {
+            sum += sMag[i];
+            if (sMag[i] > peak) peak = sMag[i];
+        }
+        float m = 0.6f * peak + 0.4f * (sum / (float)(i1 - i0));   /* 峰值为主：形状更清脆 */
+        float db = 20.0f * log10f(m + 1e-6f);
+        db += (float)(kSpecBands - b) * 0.30f;                    /* 低频抬一点：保留音频自然斜率 */
+
+        if (db > sBandRef[b]) sBandRef[b] = db;   /* 自适应参考：跟峰、快衰减（起伏更明显） */
+        else sBandRef[b] -= 1.0f;
+
+        float v = (db - (sBandRef[b] - 26.0f)) / 26.0f;
+        if (v < 0.0f) v = 0.0f;
+        if (v > 1.0f) v = 1.0f;
+        v = powf(v, 0.85f);
+        sSpecDisp[b] += (v - sSpecDisp[b]) * 0.42f;   /* 轻平滑 */
+    }
+    muDrawSpec();
 }
 
 /* ------------------------------ 播放控制 ------------------------------ */
+
+static void muNext(int step);
 
 static void muResolveFiles() {
     for (int i = 0; i < 3; ++i) {
@@ -242,21 +293,26 @@ static void muPlayFrom(int idx, int fromMs) {
     sIdx = ((idx % 3) + 3) % 3;
     sPosMs = fromMs;
     sSimMs = fromMs;
-    sRealAudio = false;
     sPlaying = true;
     sUserPaused = false;
+    sId3Done = false;
 
+    muSpecReset();                   /* 换曲目：频谱从零起 */
     muApplyDisc();
     muApplyTrackText();
     muApplyProgress();
     muApplyLyric();
-    muLoadSpec();                    /* 换曲目 = 换频谱数据 */
-    muDrawSpec();
+    muDrawSpecIdle();
 
     if (sPlayer && sHaveFile[sIdx]) {
-        sPlayer->play(sPath[sIdx], fromMs);   /* 真正开始播放 */
+        if (fromMs > 0) {
+            sPlayer->play(sPath[sIdx]);
+            sPlayer->seekTo(fromMs);
+        } else {
+            sPlayer->play(sPath[sIdx]);
+        }
     } else if (sPlayer) {
-        sPlayer->stop();                      /* 无素材：退化为演示进度 */
+        sPlayer->stop();             /* 无素材：退化为演示进度 */
     }
 }
 
@@ -264,76 +320,57 @@ static void muNext(int step) {
     muPlayFrom(sIdx + step, 0);
 }
 
-/* 播放器消息（在播放器线程回调） */
-class MuPlayerListener : public ZKMediaPlayer::IPlayerMessageListener {
-public:
-    virtual void onPlayerMessage(ZKMediaPlayer *pMediaPlayer, int msg, void *pMsgData) {
-        switch (msg) {
-        case ZKMediaPlayer::E_MSGTYPE_PLAY_STARTED:
-            sRealAudio = true;
-            if (pMediaPlayer) {
-                int d = pMediaPlayer->getDuration();
-                if (d > 0) sDurMs[sIdx] = d;   /* 真时长（不再写死） */
-            }
-            sPlaying = true;
-            muApplyTrackText();
-            muApplyProgress();
-            muApplyLyric();
-            LOGD("music: playing #%d (%s)", sIdx + 1, sPath[sIdx]);
-            break;
+static void muInitPlayer() {
+    if (sPlayer) return;
+    sPlayer = new base::MediaPlayer();
+    sPlayer->onCompletion([]() {
+        LOGD("music: completed -> next");
+        muNext(1);
+    });
+    sPlayer->onError([](int what, const std::string &str) {
+        LOGD("music: player error %#x %s", what, str.c_str());
+    });
+    sPlayer->onAudio([](uint8_t *data, int length) -> int {
+        muPushPcm(data, length);     /* 库线程：只做拷贝 */
+        return 0;
+    });
 
-        case ZKMediaPlayer::E_MSGTYPE_PLAY_COMPLETED:
-            LOGD("music: completed -> next");
-            muNext(1);
-            break;
+    base::AudioManager &am = base::AudioManager::instance();
+    am.setVolume(sVolume);           /* Z21: 0~50 */
+    am.setIdleTimeout(3000);         /* 空闲关声，避免底噪 */
+}
 
-        case ZKMediaPlayer::E_MSGTYPE_ERROR_INVALID_FILEPATH:
-        case ZKMediaPlayer::E_MSGTYPE_ERROR_MEDIA_ERROR:
-        case ZKMediaPlayer::E_MSGTYPE_ERROR_PREPARE_FAIL:
-        case ZKMediaPlayer::E_MSGTYPE_ERROR_PLAY_FAIL:
-            LOGD("music: player error msg=%d, fallback to demo progress", msg);
-            sRealAudio = false;
-            sSimMs = 0;
-            break;
-
-        default:
-            break;
-        }
-    }
-};
-static MuPlayerListener sPlayerListener;
-
-/* 进度条拖动（拖动中只记录，松手才 seek） */
+/* 进度条：拖动中记录，松手才 seek */
 class MuSeekListener : public ZKSeekBar::ISeekBarChangeListener {
 public:
     virtual void onProgressChanged(ZKSeekBar *pSeekBar, int progress) {
-        if (sTracking) sSeekTo = progress;
+        if (sTracking) sTarget = progress;
     }
     virtual void onStartTrackingTouch(ZKSeekBar *pSeekBar) {
         sTracking = true;
-        sSeekTo = -1;
+        sTarget = -1;
     }
     virtual void onStopTrackingTouch(ZKSeekBar *pSeekBar) {
         sTracking = false;
         int dur = sDurMs[sIdx] > 0 ? sDurMs[sIdx] : kSimDurMs;
-        if (sSeekTo >= 0) {
-            int ms = sSeekTo * dur / 100;
-            if (sRealAudio && sPlayer) sPlayer->seekTo(ms);
+        if (sTarget >= 0) {
+            int ms = sTarget * dur / 100;
+            if (sPlayer && sHaveFile[sIdx]) sPlayer->seekTo(ms);
             sSimMs = ms;
             sPosMs = ms;
             muApplyProgress();
             muApplyLyric();
             muSpecReset();
-            muDrawSpec();
+            muDrawSpecIdle();
         }
-        sSeekTo = -1;
+        sTarget = -1;
     }
 private:
     static bool sTracking;
-    static int  sSeekTo;
+    static int  sTarget;
 };
 bool MuSeekListener::sTracking = false;
-int  MuSeekListener::sSeekTo = -1;
+int  MuSeekListener::sTarget = -1;
 static MuSeekListener sSeekListener;
 
 /* ------------------------------ 页面动画 ------------------------------ */
@@ -351,8 +388,8 @@ static void zkAnimInit() {
     zk::PageAnim::addSlideLeft2Right(mLyricPrevPtr, 440, 300);
     zk::PageAnim::addSlideLeft2Right(mLyricCurPtr, 440, 300);
     zk::PageAnim::addSlideLeft2Right(mLyricNextPtr, 440, 300);
-    zk::PageAnim::addSlideLeft2Right(mMuProgressPtr, 440, 380);
     zk::PageAnim::addSlideLeft2Right(mSpecPtr, 440, 380);
+    zk::PageAnim::addSlideLeft2Right(mMuProgressPtr, 440, 380);
     zk::PageAnim::addSlideLeft2Right(mBtn_prevPtr, 420, 460);
     zk::PageAnim::addSlideLeft2Right(mBtn_playPtr, 420, 460);
     zk::PageAnim::addSlideLeft2Right(mBtn_nextPtr, 420, 460);
@@ -366,12 +403,11 @@ static void onUI_init() {
   #endif // FUN_BUILD
 
     muResolveFiles();
+    muInitPlayer();
+    zkHann(sHann, kFftN);
+    muSpecReset();
 
-    if (!sPlayer) {
-        sPlayer = new ZKMediaPlayer(ZKMediaPlayer::E_MEDIA_TYPE_AUDIO);
-        sPlayer->setPlayerMessageListener(&sPlayerListener);
-        sPlayer->setVolume(sVolume);
-    }
+    /* 进度条拖动 seek */
     if (mMuProgressPtr) mMuProgressPtr->setSeekBarChangeListener(&sSeekListener);
 
     sAngle = 0.0f;
@@ -379,7 +415,7 @@ static void onUI_init() {
     muApplyTrackText();
     muApplyProgress();
     muApplyLyric();
-    muDrawSpec();
+    muDrawSpecIdle();
 }
 
 static void onUI_intent(const Intent *intentPtr) {}
@@ -395,17 +431,14 @@ static void onUI_show() {
     sPageShown = true;
     if (zk::PageAnim::isRunning()) { zk::PageAnim::start(); } else { zkAnimInit(); }
 
-    /* 回到本页继续播放（用户主动暂停过则不自动续播） */
     if (!sPlaying && !sUserPaused) {
-        muPlayFrom(sIdx, sPosMs > 0 ? sPosMs : 0);
-    } else if (sPlaying && sRealAudio && sPlayer && !sPlayer->isPlaying()) {
-        sPlayer->resume();
+        muPlayFrom(sIdx, 0);
     }
 }
 
 static void onUI_hide() {
     /* 离开本页停声（唱片停转）；回来时自动续播 */
-    if (sPlayer && sRealAudio && sPlayer->isPlaying()) {
+    if (sPlayer && sPlaying) {
         sPlayer->pause();
     }
     sPlaying = false;
@@ -415,12 +448,10 @@ static void onUI_hide() {
 static void onUI_quit() {
     zk::PageAnim::release();
     if (sPlayer) {
-        sPlayer->setPlayerMessageListener(NULL);
         sPlayer->stop();
         delete sPlayer;
         sPlayer = nullptr;
     }
-    if (mMuProgressPtr) mMuProgressPtr->setSeekBarChangeListener(NULL);
 }
 
 static void onProtocolDataUpdate(const SProtocolData &data) {}
@@ -428,20 +459,27 @@ static void onProtocolDataUpdate(const SProtocolData &data) {}
 static bool onUI_Timer(int id) {
     zk::PageAnim::onTimer(id);
 
-    if (id == 1) {                      /* 唱片旋转：只在自己播时转 */
+    if (id == 1) {                      /* 唱片旋转 + 频谱 */
         if (sPlaying) {
             sAngle += 7.0f;             /* 40ms × 7° ≈ 2.0 s/圈 */
             if (sAngle >= 360.0f) sAngle -= 360.0f;
             muApplyAngle();
-            muDrawSpec();               /* 频谱跟播放位置走（暂停就不重绘 = 冻结） */
+            muAnalyzeSpec();
         }
     } else if (id == 0) {               /* 进度 / 歌词 */
         if (sPlaying) {
-            if (sRealAudio && sPlayer) {
-                int p = sPlayer->getCurrentPosition();
-                if (p >= 0) sPosMs = p;
-                int d = sPlayer->getDuration();
-                if (d > 0) sDurMs[sIdx] = d;
+            if (sPlayer && sHaveFile[sIdx]) {
+                double pos = sPlayer->currentPositon();
+                double dur = sPlayer->duration();
+                if (pos >= 0) sPosMs = (int)(pos * 1000.0);
+                if (dur > 0) sDurMs[sIdx] = (int)(dur * 1000.0);
+                if (!sId3Done) {        /* 取一次 ID3 信息 */
+                    sId3Done = true;
+                    base::MediaPlayer::AudioInfo info;
+                    sPlayer->getAudioInfo(&info);
+                    LOGD("music: id3 title='%s' artist='%s' album='%s'",
+                         info.title.c_str(), info.artist.c_str(), info.album.c_str());
+                }
             } else {
                 sSimMs += 200;
                 int dur = sDurMs[sIdx] > 0 ? sDurMs[sIdx] : kSimDurMs;
@@ -466,12 +504,12 @@ static bool onButtonClick_Btn_next(ZKButton *pButton) { muNext(1);  return false
 
 static bool onButtonClick_Btn_play(ZKButton *pButton) {
     if (sPlaying) {                      /* 暂停 */
-        if (sPlayer && sRealAudio && sPlayer->isPlaying()) sPlayer->pause();
+        if (sPlayer) sPlayer->pause();
         sPlaying = false;
         sUserPaused = true;
         pButton->setSelected(false);
-    } else {                             /* 继续 / 重新开始 */
-        if (sPlayer && sRealAudio) {
+    } else {                             /* 继续（或从头开始） */
+        if (sPlayer) {
             sPlayer->resume();
             sPlaying = true;
         } else {
@@ -491,13 +529,13 @@ static bool onButtonClick_Btn_heart(ZKButton *pButton) {
 }
 
 static bool onButtonClick_Btn_volume(ZKButton *pButton) {
-    sMuted = !sMuted;                    /* 静音 / 恢复（真音量接口） */
-    if (sPlayer) sPlayer->setVolume(sMuted ? 0.0f : sVolume);
+    sMuted = !sMuted;                    /* 真音量：AudioManager */
+    base::AudioManager::instance().setMute(sMuted);
     pButton->setSelected(sMuted);
     return false;
 }
 
-/* 保留（未装自定义监听时生效的默认进度回调） */
+/* 进度条默认回调（已装自定义监听，这里保留空实现） */
 static void onProgressChanged_MuProgress(ZKSeekBar *pSeekBar, int progress) {}
 
 static bool onButtonClick_NavBtn1(ZKButton* pButton) { return zkNavGo(0); }
