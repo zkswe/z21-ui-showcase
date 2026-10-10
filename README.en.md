@@ -60,8 +60,8 @@ Dynamic data + image cache, with smooth scrolling and rebound:
 
 ![live waveform](showcase/waveform.gif)
 
-### Spinning vinyl with real audio playback
-On the real device the music page **actually plays audio**: the record spins while playing and stops the moment you pause, and both the progress bar and the lyrics follow the **real playback position**:
+### Spinning vinyl + spectrum (real audio playback)
+On the real device the music page **actually plays audio**: the record spins while playing and stops the moment you pause, the **spectrum curve is derived from the real audio** (tightly synced to the playback position), and both the progress bar and the lyrics follow the **real playback position**:
 
 ![music player](showcase/music.gif)
 
@@ -77,7 +77,7 @@ On the real device the music page **actually plays audio**: the record spins whi
 | **Date & time** | Digital clock, analog-style pointers, wheel pickers (Y/M/D, H/M/S), calendar (month flipping / selection) | <img src="showcase/pages/datetime.png" width="300"> |
 | **List / cover wall** | `listview` essentials; cover wall is a 2-column grid list with dynamic data + image cache | <img src="showcase/pages/list.png" width="300"> |
 | **Canvas** | Self-drawn painter: finger drawing, brush size/color, undo / clear / save | <img src="showcase/pages/image.png" width="300"> |
-| **Music** | Spinning vinyl + **real audio playback**: local MP3, pause / skip / scrub / mute, time-synced lyrics | <img src="showcase/pages/music.png" width="300"> |
+| **Music** | Spinning vinyl + **real audio playback**: local MP3, pause / skip / scrub / mute, time-synced lyrics + **live spectrum curve** | <img src="showcase/pages/music.png" width="300"> |
 | **Settings / about** | Switch group, segmented control, diagnostics, save / reset | <img src="showcase/pages/settings.png" width="300"> |
 
 ---
@@ -198,6 +198,7 @@ Install in one line: `git clone` the repo above and run `mcp_server.py` **from t
 - **Animation**: staggered slide-in choreography on page entry.
 - **Self-drawn**: charts and waveform redraw per frame; the canvas records strokes.
 - **Music playback**: real playback through `ZKMediaPlayer`. Z21 is a SigmaStar platform, so the audio path is the **MI_AO** channel (not ALSA). The vinyl is a `pointer` widget whose angle is advanced every frame while playing and stops on pause; progress and lyrics come from the player's real position. The three tracks are procedurally synthesised demos shipped in `resources/music/` and deployed with the app resources.
+- **Spectrum**: drawn with a `painter` (band lines + glow + curve). The device player does not expose PCM, so the spectrum is **analysed offline on the PC from the very same audio** (`tools/gen_assets_spectrum.py`: 28 log-spaced bands, 40 fps, per-band high-percentile normalisation) and shipped as compact data (`resources/spectrum/*.bin`) which the app replays by indexing frames at the real playback position — tightly synced to the audio, at zero on-device FFT cost.
 - **Asset generation**: icons and covers are generated to the exact widget box (rounded corners via coverage alpha, scaling via area averaging — no edge ringing).
 
 ### Known limitations

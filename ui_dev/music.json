@@ -1152,5 +1152,18 @@
       "top": 120,
       "width": 300
     }
+  },
+  "painter__1": {
+    "backgroundColor": -1,
+    "caption": "Spec",
+    "id": 52002,
+    "position": {
+      "height": 44,
+      "left": 416,
+      "top": 356,
+      "width": 520
+    },
+    "touchable": false,
+    "visible": true
   }
 }
