@@ -60,6 +60,11 @@ Dynamic data + image cache, with smooth scrolling and rebound:
 
 ![live waveform](showcase/waveform.gif)
 
+### Spinning vinyl with real audio playback
+On the real device the music page **actually plays audio**: the record spins while playing and stops the moment you pause, and both the progress bar and the lyrics follow the **real playback position**:
+
+![music player](showcase/music.gif)
+
 > Frame capture: frames are grabbed on-device and assembled into GIFs. Capture uses **RGB565 + region-only grab** (source: `tools/fbcap.c`): ~8.7 fps full-screen, 9–14 fps for a cropped region. GIF playback is not the on-device frame rate.
 
 ### The eight screens
@@ -72,7 +77,7 @@ Dynamic data + image cache, with smooth scrolling and rebound:
 | **Date & time** | Digital clock, analog-style pointers, wheel pickers (Y/M/D, H/M/S), calendar (month flipping / selection) | <img src="showcase/pages/datetime.png" width="300"> |
 | **List / cover wall** | `listview` essentials; cover wall is a 2-column grid list with dynamic data + image cache | <img src="showcase/pages/list.png" width="300"> |
 | **Canvas** | Self-drawn painter: finger drawing, brush size/color, undo / clear / save | <img src="showcase/pages/image.png" width="300"> |
-| **Music** | Player UI: cover, lyrics, progress, transport controls | <img src="showcase/pages/music.png" width="300"> |
+| **Music** | Spinning vinyl + **real audio playback**: local MP3, pause / skip / scrub / mute, time-synced lyrics | <img src="showcase/pages/music.png" width="300"> |
 | **Settings / about** | Switch group, segmented control, diagnostics, save / reset | <img src="showcase/pages/settings.png" width="300"> |
 
 ---
@@ -192,10 +197,12 @@ Install in one line: `git clone` the repo above and run `mcp_server.py` **from t
 - **Dynamic lists**: `listview` + the three adapter callbacks (count / fill / click), data built at runtime; the cover wall uses a **2-column grid** + **ImageCache** (caches decoded bitmaps by path; no re-decode on re-entry), with image size exactly matching the display box.
 - **Animation**: staggered slide-in choreography on page entry.
 - **Self-drawn**: charts and waveform redraw per frame; the canvas records strokes.
+- **Music playback**: real playback through `ZKMediaPlayer`. Z21 is a SigmaStar platform, so the audio path is the **MI_AO** channel (not ALSA). The vinyl is a `pointer` widget whose angle is advanced every frame while playing and stops on pause; progress and lyrics come from the player's real position. The three tracks are procedurally synthesised demos shipped in `resources/music/` and deployed with the app resources.
 - **Asset generation**: icons and covers are generated to the exact widget box (rounded corners via coverage alpha, scaling via area averaging — no edge ringing).
 
 ### Known limitations
 - The demo focuses on widget/interaction coverage; business data is mostly sample data.
+- The music tracks are **procedurally synthesised demos** (no vocals, no licensing issues) and the lyrics are demo text synced by time; drop your own MP3s into `resources/music/` to play real songs.
 - GIFs are captured-frame playback (not the live frame rate); measure the device for real performance.
 
 ### License
