@@ -1,0 +1,1063 @@
+{
+  "beepEnable": true,
+  "id": 0,
+  "resolution": {
+    "height": 600,
+    "width": 1024
+  },
+  "topmost": false,
+  "backgroundColor": 921362,
+  "position": {
+    "height": 600,
+    "left": 0,
+    "top": 0,
+    "width": 1024
+  },
+  "textview__1": {
+    "alignment": 36,
+    "caption": "MuBack",
+    "colorTab": {
+      "color0": 15922165
+    },
+    "fontSize": 20,
+    "id": 50001,
+    "position": {
+      "height": 30,
+      "left": 28,
+      "top": 20,
+      "width": 86
+    },
+    "touchable": false,
+    "text": "< 返回"
+  },
+  "textview__2": {
+    "alignment": 37,
+    "caption": "MuTitle",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 17,
+    "id": 50002,
+    "position": {
+      "height": 26,
+      "left": 412,
+      "top": 22,
+      "width": 200
+    },
+    "touchable": false,
+    "text": "正在播放"
+  },
+  "window__1": {
+    "backgroundColor": 1316378,
+    "caption": "NavBar",
+    "hideTimeOut": -1,
+    "id": 110002,
+    "modal": false,
+    "position": {
+      "height": 72,
+      "left": 24,
+      "top": 512,
+      "width": 976
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_NavBar.9.png",
+    "textview__3": {
+      "alignment": 36,
+      "caption": "NavIcon1",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110012,
+      "position": {
+        "height": 30,
+        "left": 46,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_home_30x30_8A8F98.png"
+    },
+    "textview__4": {
+      "alignment": 37,
+      "caption": "NavLabel1",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110013,
+      "position": {
+        "height": 20,
+        "left": 16,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "首页"
+    },
+    "textview__5": {
+      "alignment": 36,
+      "caption": "NavIcon2",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110014,
+      "position": {
+        "height": 30,
+        "left": 168,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_widgets_30x30_8A8F98.png"
+    },
+    "textview__6": {
+      "alignment": 37,
+      "caption": "NavLabel2",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110015,
+      "position": {
+        "height": 20,
+        "left": 138,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "控件族"
+    },
+    "textview__7": {
+      "alignment": 36,
+      "caption": "NavIcon3",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110016,
+      "position": {
+        "height": 30,
+        "left": 290,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_chart_30x30_8A8F98.png"
+    },
+    "textview__8": {
+      "alignment": 37,
+      "caption": "NavLabel3",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110017,
+      "position": {
+        "height": 20,
+        "left": 260,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "图表"
+    },
+    "textview__9": {
+      "alignment": 36,
+      "caption": "NavIcon4",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110018,
+      "position": {
+        "height": 30,
+        "left": 412,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_calendar_30x30_8A8F98.png"
+    },
+    "textview__10": {
+      "alignment": 37,
+      "caption": "NavLabel4",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110019,
+      "position": {
+        "height": 20,
+        "left": 382,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "日期时间"
+    },
+    "textview__11": {
+      "alignment": 36,
+      "caption": "NavIcon5",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110020,
+      "position": {
+        "height": 30,
+        "left": 534,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_list_30x30_8A8F98.png"
+    },
+    "textview__12": {
+      "alignment": 37,
+      "caption": "NavLabel5",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110021,
+      "position": {
+        "height": 20,
+        "left": 504,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "列表"
+    },
+    "textview__13": {
+      "alignment": 36,
+      "caption": "NavIcon6",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110022,
+      "position": {
+        "height": 30,
+        "left": 656,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_board_30x30_8A8F98.png"
+    },
+    "textview__14": {
+      "alignment": 37,
+      "caption": "NavLabel6",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110023,
+      "position": {
+        "height": 20,
+        "left": 626,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "画板"
+    },
+    "textview__15": {
+      "alignment": 36,
+      "caption": "NavIcon7",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110024,
+      "position": {
+        "height": 30,
+        "left": 778,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_play_30x30_EC4141.png"
+    },
+    "textview__16": {
+      "alignment": 37,
+      "caption": "NavLabel7",
+      "colorTab": {
+        "color0": 15483201
+      },
+      "fontSize": 14,
+      "id": 110025,
+      "position": {
+        "height": 20,
+        "left": 748,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "音乐"
+    },
+    "textview__17": {
+      "alignment": 36,
+      "caption": "NavIcon8",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110026,
+      "position": {
+        "height": 30,
+        "left": 900,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_settings_30x30_8A8F98.png"
+    },
+    "textview__18": {
+      "alignment": 37,
+      "caption": "NavLabel8",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110027,
+      "position": {
+        "height": 20,
+        "left": 870,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "设置"
+    },
+    "button__1": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn1",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110127,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__2": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn2",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110128,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 122,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__3": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn3",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110129,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 244,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__4": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn4",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110130,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 366,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__5": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn5",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110131,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 488,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__6": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn6",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110132,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 610,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__7": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn7",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110133,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 732,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__8": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn8",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110134,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 854,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    }
+  },
+  "window__2": {
+    "backgroundColor": 921362,
+    "caption": "Cover",
+    "hideTimeOut": -1,
+    "id": 110001,
+    "modal": false,
+    "position": {
+      "height": 300,
+      "left": 60,
+      "top": 120,
+      "width": 300
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/grad_Cover_0.png"
+  },
+  "seekbar__1": {
+    "backgroundColor": -1,
+    "caption": "MuProgress",
+    "defProgress": 42,
+    "id": 91001,
+    "max": 100,
+    "orientation": 0,
+    "position": {
+      "height": 14,
+      "left": 416,
+      "top": 404,
+      "width": 520
+    },
+    "touchable": false,
+    "visible": true,
+    "thumb": {
+      "size": {
+        "width": 0,
+        "height": 0
+      },
+      "normalPic": "",
+      "pressedPic": ""
+    },
+    "backgroundPic": "images/sb_track_520x14.png",
+    "progressPic": "images/sb_fill_520x14.png"
+  },
+  "textview__19": {
+    "alignment": 36,
+    "caption": "SongName",
+    "colorTab": {
+      "color0": 15922165
+    },
+    "fontSize": 32,
+    "id": 50003,
+    "position": {
+      "height": 44,
+      "left": 416,
+      "top": 150,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "夜曲"
+  },
+  "textview__20": {
+    "alignment": 36,
+    "caption": "SongArtist",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 18,
+    "id": 50004,
+    "position": {
+      "height": 26,
+      "left": 416,
+      "top": 200,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "周杰伦 · 十一月的萧邦"
+  },
+  "textview__21": {
+    "alignment": 36,
+    "caption": "LyricPrev",
+    "colorTab": {
+      "color0": 7238268
+    },
+    "fontSize": 17,
+    "id": 50005,
+    "position": {
+      "height": 26,
+      "left": 416,
+      "top": 262,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "为你弹奏萧邦的夜曲"
+  },
+  "textview__22": {
+    "alignment": 36,
+    "caption": "LyricCur",
+    "colorTab": {
+      "color0": 15483201
+    },
+    "fontSize": 21,
+    "id": 50006,
+    "position": {
+      "height": 30,
+      "left": 416,
+      "top": 294,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "纪念我死去的爱情"
+  },
+  "textview__23": {
+    "alignment": 36,
+    "caption": "LyricNext",
+    "colorTab": {
+      "color0": 7238268
+    },
+    "fontSize": 17,
+    "id": 50007,
+    "position": {
+      "height": 26,
+      "left": 416,
+      "top": 330,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "跟夜风一样的声音"
+  },
+  "textview__24": {
+    "alignment": 36,
+    "caption": "MuTimeNow",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 14,
+    "id": 50008,
+    "position": {
+      "height": 22,
+      "left": 416,
+      "top": 424,
+      "width": 120
+    },
+    "touchable": false,
+    "text": "01:42"
+  },
+  "textview__25": {
+    "alignment": 38,
+    "caption": "MuTimeAll",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 14,
+    "id": 50009,
+    "position": {
+      "height": 22,
+      "left": 816,
+      "top": 424,
+      "width": 120
+    },
+    "touchable": false,
+    "text": "04:06"
+  },
+  "button__9": {
+    "alignment": 37,
+    "caption": "Btn_prev",
+    "colorTab": {
+      "color0": 13027792
+    },
+    "id": 20001,
+    "position": {
+      "height": 40,
+      "left": 452,
+      "top": 470,
+      "width": 40
+    },
+    "touchable": true,
+    "picTab": {
+      "pic0": "images/icon_prev_40x40_C6C9D0.png",
+      "pic1": "images/icon_prev_40x40_C6C9D0_p.png"
+    },
+    "bgColorTab": {
+      "color0": -1,
+      "color1": -1,
+      "color2": -1,
+      "color3": -1,
+      "color4": -1
+    },
+    "text": ""
+  },
+  "button__10": {
+    "alignment": 37,
+    "caption": "Btn_play",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "id": 20002,
+    "position": {
+      "height": 56,
+      "left": 528,
+      "top": 462,
+      "width": 56
+    },
+    "touchable": true,
+    "picTab": {
+      "pic0": "images/ic_system_play_56x56_EC4141.png"
+    },
+    "bgColorTab": {
+      "color0": -1,
+      "color1": -1,
+      "color2": -1,
+      "color3": -1,
+      "color4": -1
+    },
+    "text": ""
+  },
+  "button__11": {
+    "alignment": 37,
+    "caption": "Btn_next",
+    "colorTab": {
+      "color0": 13027792
+    },
+    "id": 20003,
+    "position": {
+      "height": 40,
+      "left": 604,
+      "top": 470,
+      "width": 40
+    },
+    "touchable": true,
+    "picTab": {
+      "pic0": "images/icon_next_40x40_C6C9D0.png",
+      "pic1": "images/icon_next_40x40_C6C9D0_p.png"
+    },
+    "bgColorTab": {
+      "color0": -1,
+      "color1": -1,
+      "color2": -1,
+      "color3": -1,
+      "color4": -1
+    },
+    "text": ""
+  },
+  "button__12": {
+    "alignment": 37,
+    "caption": "Btn_heart",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "id": 20004,
+    "position": {
+      "height": 40,
+      "left": 700,
+      "top": 470,
+      "width": 40
+    },
+    "touchable": true,
+    "picTab": {
+      "pic0": "images/ic_system_heart_40x40_C6C9D0.png"
+    },
+    "bgColorTab": {
+      "color0": -1,
+      "color1": -1,
+      "color2": -1,
+      "color3": -1,
+      "color4": -1
+    },
+    "text": ""
+  },
+  "button__13": {
+    "alignment": 37,
+    "caption": "Btn_volume",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "id": 20005,
+    "position": {
+      "height": 40,
+      "left": 776,
+      "top": 470,
+      "width": 40
+    },
+    "touchable": true,
+    "picTab": {
+      "pic0": "images/ic_system_volume_40x40_C6C9D0.png"
+    },
+    "bgColorTab": {
+      "color0": -1,
+      "color1": -1,
+      "color2": -1,
+      "color3": -1,
+      "color4": -1
+    },
+    "text": ""
+  }
+}

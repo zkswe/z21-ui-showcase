@@ -1,0 +1,1863 @@
+{
+    "beepEnable": true,
+    "id": 0,
+    "resolution": {
+        "height": 600,
+        "width": 1024
+    },
+    "topmost": false,
+    "backgroundColor": 1316378,
+    "position": {
+        "height": 600,
+        "left": 0,
+        "top": 0,
+        "width": 1024
+    },
+    "textview__1": {
+        "alignment": 36,
+        "caption": "TitleText",
+        "colorTab": {
+            "color0": 15922165
+        },
+        "fontSize": 26,
+        "id": 50001,
+        "position": {
+            "height": 40,
+            "left": 28,
+            "top": 18,
+            "width": 520
+        },
+        "touchable": false,
+        "text": "列表 / 封面墙"
+    },
+    "textview__2": {
+        "alignment": 36,
+        "caption": "TitleSub",
+        "colorTab": {
+            "color0": 9080728
+        },
+        "fontSize": 15,
+        "id": 50002,
+        "position": {
+            "height": 22,
+            "left": 28,
+            "top": 56,
+            "width": 520
+        },
+        "touchable": false,
+        "text": "listview 三件套 · 缩略图缓存"
+    },
+    "textview__3": {
+        "alignment": 36,
+        "caption": "ImageView1",
+        "colorTab": {
+            "color0": 15659766
+        },
+        "fontSize": 16,
+        "id": 50003,
+        "position": {
+            "height": 26,
+            "left": 884,
+            "top": 24,
+            "width": 26
+        },
+        "touchable": false,
+        "backgroundPic": "images/ic_system_wifi_26x26_8A8F98.png"
+    },
+    "textview__4": {
+        "alignment": 36,
+        "caption": "ImageView2",
+        "colorTab": {
+            "color0": 15659766
+        },
+        "fontSize": 16,
+        "id": 50004,
+        "position": {
+            "height": 26,
+            "left": 928,
+            "top": 24,
+            "width": 26
+        },
+        "touchable": false,
+        "backgroundPic": "images/ic_system_bell_26x26_8A8F98.png"
+    },
+    "textview__5": {
+        "alignment": 36,
+        "caption": "ImageView3",
+        "colorTab": {
+            "color0": 15659766
+        },
+        "fontSize": 16,
+        "id": 50005,
+        "position": {
+            "height": 26,
+            "left": 972,
+            "top": 24,
+            "width": 26
+        },
+        "touchable": false,
+        "backgroundPic": "images/ic_system_user_26x26_8A8F98.png"
+    },
+    "window__1": {
+        "backgroundColor": 1316378,
+        "caption": "ListCard",
+        "hideTimeOut": -1,
+        "id": 110001,
+        "modal": false,
+        "position": {
+            "height": 404,
+            "left": 28,
+            "top": 96,
+            "width": 620
+        },
+        "touchable": false,
+        "visible": true,
+        "backgroundPic": "images/card_ListCard.9.png",
+        "textview__6": {
+            "alignment": 36,
+            "caption": "ListTitle",
+            "colorTab": {
+                "color0": 15922165
+            },
+            "fontSize": 18,
+            "id": 50006,
+            "position": {
+                "height": 26,
+                "left": 24,
+                "top": 18,
+                "width": 300
+            },
+            "touchable": false,
+            "text": "设备列表"
+        },
+        "scrollwindow__90": {
+            "caption": "ListScroll",
+            "dragMaxDis": 60,
+            "edgeEffect": 1,
+            "id": 120001,
+            "orientation": 1,
+            "position": {
+                "height": 332,
+                "left": 12,
+                "top": 58,
+                "width": 596
+            },
+            "touchable": true,
+            "window__91": {
+                "backgroundColor": -1,
+                "caption": "ListScrollC",
+                "hideTimeOut": -1,
+                "id": 110140,
+                "modal": false,
+                "position": {
+                    "height": 672,
+                    "left": 0,
+                    "top": 0,
+                    "width": 596
+                },
+                "touchable": false,
+                "visible": true,
+                "window__150": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row1",
+                    "hideTimeOut": -1,
+                    "id": 110150,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 0,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__200": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row1Cover",
+                        "hideTimeOut": -1,
+                        "id": 110200,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__100": {
+                        "alignment": 36,
+                        "caption": "Row1Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50100,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__130": {
+                        "alignment": 36,
+                        "caption": "Row1Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50130,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "客厅主灯"
+                    },
+                    "textview__160": {
+                        "alignment": 36,
+                        "caption": "Row1Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50160,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 亮度 80%"
+                    },
+                    "textview__190": {
+                        "alignment": 36,
+                        "caption": "Row1Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50190,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__151": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row2",
+                    "hideTimeOut": -1,
+                    "id": 110151,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 84,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__201": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row2Cover",
+                        "hideTimeOut": -1,
+                        "id": 110201,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__101": {
+                        "alignment": 36,
+                        "caption": "Row2Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50101,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__131": {
+                        "alignment": 36,
+                        "caption": "Row2Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50131,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "卧室吸顶灯"
+                    },
+                    "textview__161": {
+                        "alignment": 36,
+                        "caption": "Row2Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50161,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 色温 4000K"
+                    },
+                    "textview__191": {
+                        "alignment": 36,
+                        "caption": "Row2Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50191,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__152": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row3",
+                    "hideTimeOut": -1,
+                    "id": 110152,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 168,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__202": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row3Cover",
+                        "hideTimeOut": -1,
+                        "id": 110202,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__102": {
+                        "alignment": 36,
+                        "caption": "Row3Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50102,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__132": {
+                        "alignment": 36,
+                        "caption": "Row3Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50132,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "玄关灯带"
+                    },
+                    "textview__162": {
+                        "alignment": 36,
+                        "caption": "Row3Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50162,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 亮度 35%"
+                    },
+                    "textview__192": {
+                        "alignment": 36,
+                        "caption": "Row3Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50192,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__153": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row4",
+                    "hideTimeOut": -1,
+                    "id": 110153,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 252,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__203": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row4Cover",
+                        "hideTimeOut": -1,
+                        "id": 110203,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__103": {
+                        "alignment": 36,
+                        "caption": "Row4Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50103,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__133": {
+                        "alignment": 36,
+                        "caption": "Row4Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50133,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "厨房吊灯"
+                    },
+                    "textview__163": {
+                        "alignment": 36,
+                        "caption": "Row4Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50163,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "离线"
+                    },
+                    "textview__193": {
+                        "alignment": 36,
+                        "caption": "Row4Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50193,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__154": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row5",
+                    "hideTimeOut": -1,
+                    "id": 110154,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 336,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__204": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row5Cover",
+                        "hideTimeOut": -1,
+                        "id": 110204,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__104": {
+                        "alignment": 36,
+                        "caption": "Row5Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50104,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__134": {
+                        "alignment": 36,
+                        "caption": "Row5Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50134,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "书房台灯"
+                    },
+                    "textview__164": {
+                        "alignment": 36,
+                        "caption": "Row5Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50164,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 亮度 60%"
+                    },
+                    "textview__194": {
+                        "alignment": 36,
+                        "caption": "Row5Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50194,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__155": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row6",
+                    "hideTimeOut": -1,
+                    "id": 110155,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 420,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__205": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row6Cover",
+                        "hideTimeOut": -1,
+                        "id": 110205,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__105": {
+                        "alignment": 36,
+                        "caption": "Row6Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50105,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__135": {
+                        "alignment": 36,
+                        "caption": "Row6Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50135,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "阳台灯"
+                    },
+                    "textview__165": {
+                        "alignment": 36,
+                        "caption": "Row6Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50165,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 亮度 20%"
+                    },
+                    "textview__195": {
+                        "alignment": 36,
+                        "caption": "Row6Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50195,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__156": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row7",
+                    "hideTimeOut": -1,
+                    "id": 110156,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 504,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__206": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row7Cover",
+                        "hideTimeOut": -1,
+                        "id": 110206,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__106": {
+                        "alignment": 36,
+                        "caption": "Row7Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50106,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__136": {
+                        "alignment": 36,
+                        "caption": "Row7Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50136,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "儿童房灯"
+                    },
+                    "textview__166": {
+                        "alignment": 36,
+                        "caption": "Row7Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50166,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "在线 · 亮度 75%"
+                    },
+                    "textview__196": {
+                        "alignment": 36,
+                        "caption": "Row7Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50196,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                },
+                "window__157": {
+                    "backgroundColor": 1974566,
+                    "caption": "Row8",
+                    "hideTimeOut": -1,
+                    "id": 110157,
+                    "modal": false,
+                    "position": {
+                        "height": 72,
+                        "left": 8,
+                        "top": 588,
+                        "width": 580
+                    },
+                    "touchable": false,
+                    "visible": true,
+                    "backgroundPic": "images/card_Row1.9.png",
+                    "window__207": {
+                        "backgroundColor": 2501427,
+                        "caption": "Row8Cover",
+                        "hideTimeOut": -1,
+                        "id": 110207,
+                        "modal": false,
+                        "position": {
+                            "height": 48,
+                            "left": 16,
+                            "top": 12,
+                            "width": 48
+                        },
+                        "touchable": false,
+                        "visible": true,
+                        "backgroundPic": "images/card_Row1Cover.9.png"
+                    },
+                    "textview__107": {
+                        "alignment": 36,
+                        "caption": "Row8Icon",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50107,
+                        "position": {
+                            "height": 28,
+                            "left": 26,
+                            "top": 24,
+                            "width": 28
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_device_bulb_28x28_FFFFFF.png"
+                    },
+                    "textview__137": {
+                        "alignment": 36,
+                        "caption": "Row8Name",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 17,
+                        "id": 50137,
+                        "position": {
+                            "height": 24,
+                            "left": 84,
+                            "top": 16,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "过道感应灯"
+                    },
+                    "textview__167": {
+                        "alignment": 36,
+                        "caption": "Row8Sub",
+                        "colorTab": {
+                            "color0": 9080728
+                        },
+                        "fontSize": 14,
+                        "id": 50167,
+                        "position": {
+                            "height": 20,
+                            "left": 84,
+                            "top": 42,
+                            "width": 300
+                        },
+                        "touchable": false,
+                        "text": "离线"
+                    },
+                    "textview__197": {
+                        "alignment": 36,
+                        "caption": "Row8Arrow",
+                        "colorTab": {
+                            "color0": 15922165
+                        },
+                        "fontSize": 16,
+                        "id": 50197,
+                        "position": {
+                            "height": 24,
+                            "left": 536,
+                            "top": 26,
+                            "width": 24
+                        },
+                        "touchable": false,
+                        "backgroundPic": "images/ic_control_arrow-right_24x24_8A8F98.png"
+                    }
+                }
+            }
+        }
+    },
+    "window__10": {
+        "backgroundColor": 1316378,
+        "caption": "GridCard",
+        "hideTimeOut": -1,
+        "id": 110010,
+        "modal": false,
+        "position": {
+            "height": 404,
+            "left": 668,
+            "top": 96,
+            "width": 328
+        },
+        "touchable": false,
+        "visible": true,
+        "backgroundPic": "images/card_GridCard.9.png",
+        "textview__23": {
+            "alignment": 36,
+            "caption": "GridTitle",
+            "colorTab": {
+                "color0": 15922165
+            },
+            "fontSize": 18,
+            "id": 50023,
+            "position": {
+                "height": 26,
+                "left": 22,
+                "top": 18,
+                "width": 240
+            },
+            "touchable": false,
+            "text": "封面墙"
+        },
+        "listview__4": {
+            "autoRollback": false,
+            "backgroundColor": -1,
+            "caption": "ListCovers",
+            "cols": 2,
+            "cycleEnable": false,
+            "dragMaxDis": 0,
+            "edgeEffect": 0,
+            "hasScrollbar": false,
+            "id": 80001,
+            "rows": 3,
+            "touchable": true,
+            "visible": true,
+            "position": {
+                "left": 12,
+                "top": 50,
+                "width": 304,
+                "height": 342
+            },
+            "orientation": 1,
+            "colSpacing": 20,
+            "rowSpacing": 2,
+            "item": {
+                "alignment": 37,
+                "backgroundColor": -1,
+                "backgroundPic": "",
+                "bgColorTab": {
+                    "color0": -1,
+                    "color1": -1,
+                    "color2": -1,
+                    "color3": -1,
+                    "color4": -1
+                },
+                "bold": false,
+                "caption": "item",
+                "colorTab": {
+                    "color0": 15922165,
+                    "color1": 15922165,
+                    "color2": 15922165,
+                    "color3": 15922165,
+                    "color4": -1
+                },
+                "fontFamily": 0,
+                "fontSize": 18,
+                "italic": false,
+                "longClickIntervalTime": -1,
+                "longClickTimeOut": -1,
+                "picTab": {
+                    "pic0": "",
+                    "pic1": "",
+                    "pic2": ""
+                },
+                "position": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 142,
+                    "height": 112
+                },
+                "text": "",
+                "touchable": true,
+                "visible": true,
+                "subItem": [
+                    {
+                        "alignment": 36,
+                        "backgroundColor": -1,
+                        "backgroundPic": "",
+                        "bgColorTab": {
+                            "color0": -1,
+                            "color1": -1,
+                            "color2": -1,
+                            "color3": -1,
+                            "color4": -1
+                        },
+                        "bold": false,
+                        "caption": "SubCovCover",
+                        "colorTab": {
+                            "color0": 9080728,
+                            "color1": 9080728,
+                            "color2": 9080728,
+                            "color3": 9080728,
+                            "color4": -1
+                        },
+                        "fontFamily": 0,
+                        "fontSize": 16,
+                        "id": 81001,
+                        "italic": false,
+                        "longClickIntervalTime": -1,
+                        "longClickTimeOut": -1,
+                        "picTab": {
+                            "pic0": "",
+                            "pic1": "",
+                            "pic2": ""
+                        },
+                        "position": {
+                            "left": 0,
+                            "top": 0,
+                            "width": 142,
+                            "height": 88
+                        },
+                        "text": "",
+                        "touchable": true,
+                        "visible": true
+                    },
+                    {
+                        "alignment": 37,
+                        "backgroundColor": -1,
+                        "backgroundPic": "",
+                        "bgColorTab": {
+                            "color0": -1,
+                            "color1": -1,
+                            "color2": -1,
+                            "color3": -1,
+                            "color4": -1
+                        },
+                        "bold": false,
+                        "caption": "SubCovName",
+                        "colorTab": {
+                            "color0": 15922165,
+                            "color1": 15922165,
+                            "color2": 15922165,
+                            "color3": 15922165,
+                            "color4": -1
+                        },
+                        "fontFamily": 0,
+                        "fontSize": 14,
+                        "id": 81002,
+                        "italic": false,
+                        "longClickIntervalTime": -1,
+                        "longClickTimeOut": -1,
+                        "picTab": {
+                            "pic0": "",
+                            "pic1": "",
+                            "pic2": ""
+                        },
+                        "position": {
+                            "left": 0,
+                            "top": 90,
+                            "width": 142,
+                            "height": 20
+                        },
+                        "text": "",
+                        "touchable": true,
+                        "visible": true
+                    }
+                ]
+            }
+        }
+    },
+    "window__17": {
+        "backgroundColor": 1316378,
+        "caption": "NavBar",
+        "hideTimeOut": -1,
+        "id": 110017,
+        "modal": false,
+        "position": {
+            "height": 72,
+            "left": 24,
+            "top": 512,
+            "width": 976
+        },
+        "touchable": false,
+        "visible": true,
+        "backgroundPic": "images/card_NavBar.9.png",
+        "textview__30": {
+            "alignment": 36,
+            "caption": "NavIcon1",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110027,
+            "position": {
+                "height": 30,
+                "left": 46,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_home_30x30_8A8F98.png"
+        },
+        "textview__31": {
+            "alignment": 37,
+            "caption": "NavLabel1",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110028,
+            "position": {
+                "height": 20,
+                "left": 16,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "首页"
+        },
+        "textview__32": {
+            "alignment": 36,
+            "caption": "NavIcon2",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110029,
+            "position": {
+                "height": 30,
+                "left": 168,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_widgets_30x30_8A8F98.png"
+        },
+        "textview__33": {
+            "alignment": 37,
+            "caption": "NavLabel2",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110030,
+            "position": {
+                "height": 20,
+                "left": 138,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "控件族"
+        },
+        "textview__34": {
+            "alignment": 36,
+            "caption": "NavIcon3",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110031,
+            "position": {
+                "height": 30,
+                "left": 290,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_chart_30x30_8A8F98.png"
+        },
+        "textview__35": {
+            "alignment": 37,
+            "caption": "NavLabel3",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110032,
+            "position": {
+                "height": 20,
+                "left": 260,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "图表"
+        },
+        "textview__36": {
+            "alignment": 36,
+            "caption": "NavIcon4",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110033,
+            "position": {
+                "height": 30,
+                "left": 412,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_calendar_30x30_8A8F98.png"
+        },
+        "textview__37": {
+            "alignment": 37,
+            "caption": "NavLabel4",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110034,
+            "position": {
+                "height": 20,
+                "left": 382,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "日期时间"
+        },
+        "textview__38": {
+            "alignment": 36,
+            "caption": "NavIcon5",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110035,
+            "position": {
+                "height": 30,
+                "left": 534,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_list_30x30_EC4141.png"
+        },
+        "textview__39": {
+            "alignment": 37,
+            "caption": "NavLabel5",
+            "colorTab": {
+                "color0": 15483201
+            },
+            "fontSize": 14,
+            "id": 110036,
+            "position": {
+                "height": 20,
+                "left": 504,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "列表"
+        },
+        "textview__40": {
+            "alignment": 36,
+            "caption": "NavIcon6",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110037,
+            "position": {
+                "height": 30,
+                "left": 656,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_board_30x30_8A8F98.png"
+        },
+        "textview__41": {
+            "alignment": 37,
+            "caption": "NavLabel6",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110038,
+            "position": {
+                "height": 20,
+                "left": 626,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "画板"
+        },
+        "textview__42": {
+            "alignment": 36,
+            "caption": "NavIcon7",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110039,
+            "position": {
+                "height": 30,
+                "left": 778,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_play_30x30_8A8F98.png"
+        },
+        "textview__43": {
+            "alignment": 37,
+            "caption": "NavLabel7",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110040,
+            "position": {
+                "height": 20,
+                "left": 748,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "音乐"
+        },
+        "textview__44": {
+            "alignment": 36,
+            "caption": "NavIcon8",
+            "colorTab": {
+                "color0": 15659766
+            },
+            "fontSize": 16,
+            "id": 110041,
+            "position": {
+                "height": 30,
+                "left": 900,
+                "top": 10,
+                "width": 30
+            },
+            "touchable": false,
+            "backgroundPic": "images/ic_system_settings_30x30_8A8F98.png"
+        },
+        "textview__45": {
+            "alignment": 37,
+            "caption": "NavLabel8",
+            "colorTab": {
+                "color0": 9080728
+            },
+            "fontSize": 14,
+            "id": 110042,
+            "position": {
+                "height": 20,
+                "left": 870,
+                "top": 44,
+                "width": 90
+            },
+            "touchable": false,
+            "text": "设置"
+        },
+        "button__1": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn1",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110142,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__2": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn2",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110143,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 122,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__3": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn3",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110144,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 244,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__4": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn4",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110145,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 366,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__5": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn5",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110146,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 488,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__6": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn6",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110147,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 610,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__7": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn7",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110148,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 732,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        },
+        "button__8": {
+            "alignment": 37,
+            "backgroundColor": -1,
+            "bgColorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "bold": false,
+            "caption": "NavBtn8",
+            "colorTab": {
+                "color0": -1,
+                "color1": -1,
+                "color2": -1,
+                "color3": -1,
+                "color4": -1
+            },
+            "fontSize": 16,
+            "iconPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "id": 110149,
+            "italic": false,
+            "longClickIntervalTime": -1,
+            "longClickTimeOut": -1,
+            "picTab": {
+                "pic0": "",
+                "pic1": ""
+            },
+            "position": {
+                "height": 72,
+                "left": 854,
+                "top": 0,
+                "width": 122
+            },
+            "rollDirection": 1,
+            "rollEnable": false,
+            "rollIntervalTime": 150,
+            "rollStep": 5,
+            "text": "",
+            "textPosition": {
+                "height": 72,
+                "left": 0,
+                "top": 0,
+                "width": 122
+            },
+            "touchable": true,
+            "visible": true
+        }
+    }
+}

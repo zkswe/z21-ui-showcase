@@ -1,0 +1,1297 @@
+{
+  "beepEnable": true,
+  "id": 0,
+  "resolution": {
+    "height": 600,
+    "width": 1024
+  },
+  "topmost": false,
+  "backgroundColor": 1316378,
+  "position": {
+    "height": 600,
+    "left": 0,
+    "top": 0,
+    "width": 1024
+  },
+  "textview__1": {
+    "alignment": 36,
+    "caption": "TitleText",
+    "colorTab": {
+      "color0": 15922165
+    },
+    "fontSize": 26,
+    "id": 50001,
+    "position": {
+      "height": 40,
+      "left": 28,
+      "top": 18,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "自定义画板"
+  },
+  "textview__2": {
+    "alignment": 36,
+    "caption": "TitleSub",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 15,
+    "id": 50002,
+    "position": {
+      "height": 22,
+      "left": 28,
+      "top": 56,
+      "width": 520
+    },
+    "touchable": false,
+    "text": "ZKPainter 手绘 · 颜色 / 粗细 / 清空"
+  },
+  "textview__3": {
+    "alignment": 36,
+    "caption": "ImageView1",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "fontSize": 16,
+    "id": 50003,
+    "position": {
+      "height": 26,
+      "left": 884,
+      "top": 24,
+      "width": 26
+    },
+    "touchable": false,
+    "backgroundPic": "images/ic_system_wifi_26x26_8A8F98.png"
+  },
+  "textview__4": {
+    "alignment": 36,
+    "caption": "ImageView2",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "fontSize": 16,
+    "id": 50004,
+    "position": {
+      "height": 26,
+      "left": 928,
+      "top": 24,
+      "width": 26
+    },
+    "touchable": false,
+    "backgroundPic": "images/ic_system_bell_26x26_8A8F98.png"
+  },
+  "textview__5": {
+    "alignment": 36,
+    "caption": "ImageView3",
+    "colorTab": {
+      "color0": 15659766
+    },
+    "fontSize": 16,
+    "id": 50005,
+    "position": {
+      "height": 26,
+      "left": 972,
+      "top": 24,
+      "width": 26
+    },
+    "touchable": false,
+    "backgroundPic": "images/ic_system_user_26x26_8A8F98.png"
+  },
+  "window__1": {
+    "backgroundColor": 1316378,
+    "caption": "CanvasCard",
+    "hideTimeOut": -1,
+    "id": 110001,
+    "modal": false,
+    "position": {
+      "height": 336,
+      "left": 28,
+      "top": 96,
+      "width": 700
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_CanvasCard.9.png"
+  },
+  "painter__1": {
+    "backgroundColor": -1,
+    "caption": "Canvas",
+    "id": 52001,
+    "position": {
+      "height": 304,
+      "left": 44,
+      "top": 112,
+      "width": 668
+    },
+    "touchable": false,
+    "visible": true
+  },
+  "textview__6": {
+    "alignment": 37,
+    "caption": "CanvasHint",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 18,
+    "id": 50006,
+    "position": {
+      "height": 30,
+      "left": 228,
+      "top": 246,
+      "width": 300
+    },
+    "touchable": false,
+    "text": "手指在此绘制"
+  },
+  "window__2": {
+    "backgroundColor": 1316378,
+    "caption": "ToolCard",
+    "hideTimeOut": -1,
+    "id": 110002,
+    "modal": false,
+    "position": {
+      "height": 336,
+      "left": 744,
+      "top": 96,
+      "width": 252
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_ToolCard.9.png",
+    "textview__7": {
+      "alignment": 36,
+      "caption": "ToolTitle",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 16,
+      "id": 50007,
+      "position": {
+        "height": 24,
+        "left": 20,
+        "top": 16,
+        "width": 200
+      },
+      "touchable": false,
+      "text": "工具"
+    },
+    "textview__8": {
+      "alignment": 36,
+      "caption": "ToolColorLb",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 13,
+      "id": 50008,
+      "position": {
+        "height": 20,
+        "left": 20,
+        "top": 52,
+        "width": 200
+      },
+      "touchable": false,
+      "text": "颜色"
+    },
+    "button__15": {
+      "alignment": 37,
+      "caption": "Sw1",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20008,
+      "position": {
+        "height": 36,
+        "left": 20,
+        "top": 78,
+        "width": 36
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "text": "",
+      "picTab": {
+        "pic0": "images/pill_Sw1.9.png",
+        "pic2": "images/pill_Sw1_sel.png"
+      }
+    },
+    "button__16": {
+      "alignment": 37,
+      "caption": "Sw2",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20009,
+      "position": {
+        "height": 36,
+        "left": 64,
+        "top": 78,
+        "width": 36
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "text": "",
+      "picTab": {
+        "pic0": "images/pill_Sw2.9.png",
+        "pic2": "images/pill_Sw2_sel.png"
+      }
+    },
+    "button__17": {
+      "alignment": 37,
+      "caption": "Sw3",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20010,
+      "position": {
+        "height": 36,
+        "left": 108,
+        "top": 78,
+        "width": 36
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "text": "",
+      "picTab": {
+        "pic0": "images/pill_Sw3.9.png",
+        "pic2": "images/pill_Sw3_sel.png"
+      }
+    },
+    "button__18": {
+      "alignment": 37,
+      "caption": "Sw4",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20011,
+      "position": {
+        "height": 36,
+        "left": 152,
+        "top": 78,
+        "width": 36
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "text": "",
+      "picTab": {
+        "pic0": "images/pill_Sw4.9.png",
+        "pic2": "images/pill_Sw4_sel.png"
+      }
+    },
+    "button__19": {
+      "alignment": 37,
+      "caption": "Sw5",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20012,
+      "position": {
+        "height": 36,
+        "left": 196,
+        "top": 78,
+        "width": 36
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "text": "",
+      "picTab": {
+        "pic0": "images/pill_Sw5.9.png",
+        "pic2": "images/pill_Sw5_sel.png"
+      }
+    },
+    "textview__14": {
+      "alignment": 36,
+      "caption": "ToolWidthLb",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 13,
+      "id": 50014,
+      "position": {
+        "height": 20,
+        "left": 20,
+        "top": 132,
+        "width": 200
+      },
+      "touchable": false,
+      "text": "粗细"
+    },
+    "button__1": {
+      "alignment": 37,
+      "caption": "W1",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20001,
+      "position": {
+        "height": 40,
+        "left": 20,
+        "top": 158,
+        "width": 64
+      },
+      "touchable": true,
+      "picTab": {
+        "pic0": "images/btn_W_off.png",
+        "pic2": "images/btn_W_on.png"
+      },
+      "fontSize": 14,
+      "text": "细"
+    },
+    "button__2": {
+      "alignment": 37,
+      "caption": "W2",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20002,
+      "position": {
+        "height": 40,
+        "left": 94,
+        "top": 158,
+        "width": 64
+      },
+      "touchable": true,
+      "picTab": {
+        "pic0": "images/btn_W_off.png",
+        "pic2": "images/btn_W_on.png"
+      },
+      "fontSize": 14,
+      "text": "中"
+    },
+    "button__3": {
+      "alignment": 37,
+      "caption": "W3",
+      "colorTab": {
+        "color0": 16777215
+      },
+      "id": 20003,
+      "position": {
+        "height": 40,
+        "left": 168,
+        "top": 158,
+        "width": 64
+      },
+      "touchable": true,
+      "picTab": {
+        "pic0": "images/btn_W_off.png",
+        "pic2": "images/btn_W_on.png"
+      },
+      "fontSize": 14,
+      "text": "粗"
+    },
+    "button__4": {
+      "alignment": 37,
+      "caption": "BtnUndo",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "id": 20004,
+      "position": {
+        "height": 56,
+        "left": 20,
+        "top": 218,
+        "width": 56
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "picTab": {
+        "pic0": "images/ic_control_arrow-left_56x56_F2F3F5.png"
+      },
+      "text": ""
+    },
+    "button__5": {
+      "alignment": 37,
+      "caption": "BtnClear",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "id": 20005,
+      "position": {
+        "height": 56,
+        "left": 88,
+        "top": 218,
+        "width": 56
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "picTab": {
+        "pic0": "images/ic_system_trash_56x56_EC4141.png"
+      },
+      "text": ""
+    },
+    "button__6": {
+      "alignment": 37,
+      "caption": "BtnSave",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "id": 20006,
+      "position": {
+        "height": 56,
+        "left": 156,
+        "top": 218,
+        "width": 56
+      },
+      "touchable": true,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "picTab": {
+        "pic0": "images/ic_system_download_56x56_FFFFFF.png"
+      },
+      "text": ""
+    },
+    "textview__15": {
+      "alignment": 36,
+      "caption": "ToolTip",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 13,
+      "id": 50015,
+      "position": {
+        "height": 36,
+        "left": 20,
+        "top": 288,
+        "width": 212
+      },
+      "touchable": false,
+      "text": "手指拖动即可画线，抬起收笔"
+    }
+  },
+  "textview__16": {
+    "alignment": 36,
+    "caption": "CropLb",
+    "colorTab": {
+      "color0": 9080728
+    },
+    "fontSize": 13,
+    "id": 50016,
+    "position": {
+      "height": 20,
+      "left": 28,
+      "top": 444,
+      "width": 300
+    },
+    "touchable": false,
+    "text": "圆形裁切样例"
+  },
+  "window__3": {
+    "backgroundColor": 1316378,
+    "caption": "Crop1",
+    "hideTimeOut": -1,
+    "id": 110003,
+    "modal": false,
+    "position": {
+      "height": 36,
+      "left": 28,
+      "top": 466,
+      "width": 36
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_Crop1.9.png"
+  },
+  "window__4": {
+    "backgroundColor": 1316378,
+    "caption": "Crop2",
+    "hideTimeOut": -1,
+    "id": 110004,
+    "modal": false,
+    "position": {
+      "height": 36,
+      "left": 74,
+      "top": 466,
+      "width": 36
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_Crop2.9.png"
+  },
+  "window__5": {
+    "backgroundColor": 1316378,
+    "caption": "Crop3",
+    "hideTimeOut": -1,
+    "id": 110005,
+    "modal": false,
+    "position": {
+      "height": 36,
+      "left": 120,
+      "top": 466,
+      "width": 36
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_Crop3.9.png"
+  },
+  "window__6": {
+    "backgroundColor": 1316378,
+    "caption": "NavBar",
+    "hideTimeOut": -1,
+    "id": 110006,
+    "modal": false,
+    "position": {
+      "height": 72,
+      "left": 24,
+      "top": 512,
+      "width": 976
+    },
+    "touchable": false,
+    "visible": true,
+    "backgroundPic": "images/card_NavBar.9.png",
+    "textview__17": {
+      "alignment": 36,
+      "caption": "NavIcon1",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110016,
+      "position": {
+        "height": 30,
+        "left": 46,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_home_30x30_8A8F98.png"
+    },
+    "textview__18": {
+      "alignment": 37,
+      "caption": "NavLabel1",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110017,
+      "position": {
+        "height": 20,
+        "left": 16,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "首页"
+    },
+    "textview__19": {
+      "alignment": 36,
+      "caption": "NavIcon2",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110018,
+      "position": {
+        "height": 30,
+        "left": 168,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_widgets_30x30_8A8F98.png"
+    },
+    "textview__20": {
+      "alignment": 37,
+      "caption": "NavLabel2",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110019,
+      "position": {
+        "height": 20,
+        "left": 138,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "控件族"
+    },
+    "textview__21": {
+      "alignment": 36,
+      "caption": "NavIcon3",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110020,
+      "position": {
+        "height": 30,
+        "left": 290,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_chart_30x30_8A8F98.png"
+    },
+    "textview__22": {
+      "alignment": 37,
+      "caption": "NavLabel3",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110021,
+      "position": {
+        "height": 20,
+        "left": 260,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "图表"
+    },
+    "textview__23": {
+      "alignment": 36,
+      "caption": "NavIcon4",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110022,
+      "position": {
+        "height": 30,
+        "left": 412,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_calendar_30x30_8A8F98.png"
+    },
+    "textview__24": {
+      "alignment": 37,
+      "caption": "NavLabel4",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110023,
+      "position": {
+        "height": 20,
+        "left": 382,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "日期时间"
+    },
+    "textview__25": {
+      "alignment": 36,
+      "caption": "NavIcon5",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110024,
+      "position": {
+        "height": 30,
+        "left": 534,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_list_30x30_8A8F98.png"
+    },
+    "textview__26": {
+      "alignment": 37,
+      "caption": "NavLabel5",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110025,
+      "position": {
+        "height": 20,
+        "left": 504,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "列表"
+    },
+    "textview__27": {
+      "alignment": 36,
+      "caption": "NavIcon6",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110026,
+      "position": {
+        "height": 30,
+        "left": 656,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_board_30x30_EC4141.png"
+    },
+    "textview__28": {
+      "alignment": 37,
+      "caption": "NavLabel6",
+      "colorTab": {
+        "color0": 15483201
+      },
+      "fontSize": 14,
+      "id": 110027,
+      "position": {
+        "height": 20,
+        "left": 626,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "画板"
+    },
+    "textview__29": {
+      "alignment": 36,
+      "caption": "NavIcon7",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110028,
+      "position": {
+        "height": 30,
+        "left": 778,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_play_30x30_8A8F98.png"
+    },
+    "textview__30": {
+      "alignment": 37,
+      "caption": "NavLabel7",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110029,
+      "position": {
+        "height": 20,
+        "left": 748,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "音乐"
+    },
+    "textview__31": {
+      "alignment": 36,
+      "caption": "NavIcon8",
+      "colorTab": {
+        "color0": 15659766
+      },
+      "fontSize": 16,
+      "id": 110030,
+      "position": {
+        "height": 30,
+        "left": 900,
+        "top": 10,
+        "width": 30
+      },
+      "touchable": false,
+      "backgroundPic": "images/ic_system_settings_30x30_8A8F98.png"
+    },
+    "textview__32": {
+      "alignment": 37,
+      "caption": "NavLabel8",
+      "colorTab": {
+        "color0": 9080728
+      },
+      "fontSize": 14,
+      "id": 110031,
+      "position": {
+        "height": 20,
+        "left": 870,
+        "top": 44,
+        "width": 90
+      },
+      "touchable": false,
+      "text": "设置"
+    },
+    "button__7": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn1",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110131,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__8": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn2",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110132,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 122,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__9": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn3",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110133,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 244,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__10": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn4",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110134,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 366,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__11": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn5",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110135,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 488,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__12": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn6",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110136,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 610,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__13": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn7",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110137,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 732,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    },
+    "button__14": {
+      "alignment": 37,
+      "backgroundColor": -1,
+      "bgColorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "bold": false,
+      "caption": "NavBtn8",
+      "colorTab": {
+        "color0": -1,
+        "color1": -1,
+        "color2": -1,
+        "color3": -1,
+        "color4": -1
+      },
+      "fontSize": 16,
+      "iconPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "id": 110138,
+      "italic": false,
+      "longClickIntervalTime": -1,
+      "longClickTimeOut": -1,
+      "picTab": {
+        "pic0": "",
+        "pic1": ""
+      },
+      "position": {
+        "height": 72,
+        "left": 854,
+        "top": 0,
+        "width": 122
+      },
+      "rollDirection": 1,
+      "rollEnable": false,
+      "rollIntervalTime": 150,
+      "rollStep": 5,
+      "text": "",
+      "textPosition": {
+        "height": 72,
+        "left": 0,
+        "top": 0,
+        "width": 122
+      },
+      "touchable": true,
+      "visible": true
+    }
+  }
+}
